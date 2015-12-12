@@ -1,0 +1,51 @@
+﻿@model IEnumerable<JlinxWebApp.Models.Link>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "New")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    string createdToShortDate = item.Created.ToShortDateString(); 
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkDescription)
+        </td>
+        <td>
+            <a href="@item.UrlAddress">
+                @Html.DisplayFor(modelItem => item.UrlAddress)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => createdToShortDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
